@@ -1,0 +1,14 @@
+{
+  "name": "LeetCode",
+  "version": "0.0.1",
+  "description": "LeetCode Solution",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "my",
+  "license": "ISC"
+}
