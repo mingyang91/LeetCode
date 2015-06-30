@@ -1,5 +1,3 @@
-var ListNode = require('./ListNode.js');
-
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -54,4 +52,12 @@ var addTwoNumbers = function(l1, l2) {
   return resultNode;
 };
 
-module.exports = addTwoNumbers;
+var ListNode = function (val) {
+  this.val = val;
+  this.next = null;
+};
+
+module.exports = {
+  addTwoNumbers: addTwoNumbers,
+  ListNode: ListNode
+};

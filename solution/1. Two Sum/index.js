@@ -146,4 +146,9 @@ var twoSum = function (nums, target) {
     }
   }
 };
-module.exports = twoSum;
+module.exports = {
+  twoSum: twoSum,
+  twoSum1: twoSum1,
+  twoSum2: twoSum2,
+  twoSum3: twoSum3
+};
