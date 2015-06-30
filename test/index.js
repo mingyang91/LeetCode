@@ -15,7 +15,13 @@ describe('Leet Code', function () {
   it('1. Two Sum', function (done) {
     this.timeout(2000);
     var result;
-    var track = Date.now();
+    var track;
+
+    result = twoSum([0,4,3,0], 0);
+    result[0].should.be.equal(1);
+    result[1].should.be.equal(4);
+
+    track = Date.now();
     result = twoSum([2, 7, 11, 15], 9);
     console.log(Date.now() - track);
 
