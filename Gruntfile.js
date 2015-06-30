@@ -6,9 +6,15 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
-      all: [
-        '**/*.js'
-      ]
+      files: ['gruntfile.js', 'solution/**/*.js', 'test/**/*.js'],
+      // configure JSHint (documented at http://www.jshint.com/docs/)
+      options: {
+        // more options here if you want to override JSHint defaults
+        globals: {
+          console: true,
+          module: true
+        }
+      }
     },
     mochaTest: {
       test: {
