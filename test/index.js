@@ -6,7 +6,7 @@ var assert = require('assert');
 
 describe('1. Two Sum', function () {
   var init = false;
-  var twoSum = require('../solution/1. Two Sum');
+  var twoSum = require('../solution/1. Two Sum').twoSum;
 
   before(function (done) {
     init = true;
@@ -43,8 +43,8 @@ describe('1. Two Sum', function () {
 });
 
 describe('2. Add Two Numbers', function () {
-  var addTwoNumbers = require('../solution/2. Add Two Numbers');
-  var ListNode = require('../solution/2. Add Two Numbers/ListNode.js');
+  var addTwoNumbers = require('../solution/2. Add Two Numbers').addTwoNumbers;
+  var ListNode = require('../solution/2. Add Two Numbers').ListNode;
 
   it('example', function (done) {
     var l1 = new ListNode(2);
@@ -61,6 +61,19 @@ describe('2. Add Two Numbers', function () {
     result.next.val.should.be.equal(0);
     result.next.next.val.should.be.equal(8);
 
+    done();
+  });
+});
+
+describe('3. Longest Substring Without Repeating Characters', function () {
+  var lengthOfLongestSubstring = require('../solution/3. Longest Substring Without Repeating Characters').lengthOfLongestSubstring;
+  it('example', function (done) {
+    var result = 0;
+    result = lengthOfLongestSubstring('abcabcbb');
+    result.should.be.equal(3);
+
+    result = lengthOfLongestSubstring('bbbbbbbbbb');
+    result.should.be.equal(1);
     done();
   });
 });
