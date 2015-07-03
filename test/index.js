@@ -74,6 +74,13 @@ describe('3. Longest Substring Without Repeating Characters', function () {
 
     result = lengthOfLongestSubstring('bbbbbbbbbb');
     result.should.be.equal(1);
+
+    result = lengthOfLongestSubstring('');
+    result.should.be.equal(0);
+
+    console.log(Date.now());
+    result = lengthOfLongestSubstring('zqfnqpczugtnjjrzqfnqpczugtnjjrfovwzqfnqpczugtnjjrfovwqkfqbmqimqpzzqfnqpczugtnjjrzqfnqpczugtnjjrfovwzqfnqpczugtnjjrfovwqkfqbmqimqpzqfnqpczugtnjjrfovwqkfqbmqimqpvrfaevrvrfaevrqkfqbmqimqpvrfaevrfovwqkfqbmqimqpvrfaevrqfnqpczugtnjjrfovwqkfqbmqimqpvrfaevrvrfaevrqkfqbmqimqpvrfaevrfovwqkfqbmqimqpvrfaevr');
+    console.log(Date.now());
     done();
   });
 });
