@@ -47,6 +47,7 @@ var lengthOfLongestSubstring1 = function(s) {
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
+  'use strict';
   var substr, subStringList = [];
   var longLength = 0;
   var offsetList = [];
