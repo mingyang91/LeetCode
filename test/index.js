@@ -76,6 +76,9 @@ describe('3. Longest Substring Without Repeating Characters', function () {
     result = lengthOfLongestSubstring('dvdf');
     result.should.be.equal(3);
 
+    result = lengthOfLongestSubstring('pwwkew');
+    result.should.be.equal(3);
+
     result = lengthOfLongestSubstring('abcabcbb');
     result.should.be.equal(3);
 

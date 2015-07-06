@@ -1,4 +1,5 @@
 /**
+ * 时间复杂度超高，第一版算法
  * @param {string} s
  * @return {number}
  */
@@ -43,10 +44,12 @@ var lengthOfLongestSubstring1 = function(s) {
 };
 
 /**
+ * 回头算法
+ * O(n^2)
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring2 = function(s) {
   'use strict';
   var hashTab = {};
   var len = 0;
@@ -69,7 +72,42 @@ var lengthOfLongestSubstring = function(s) {
   return maxlen;
 };
 
-
+/**
+ * 为何要回头呢
+ * O(n)
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+  'use strict';
+  var hashTab = {};
+  var len = 0;
+  var maxlen = 0;
+  for (var index = 0; index < s.length; index++) {
+    if (typeof hashTab[s[index]] === 'undefined') {
+      hashTab[s[index]] = index;
+      if (++len > maxlen) {
+        maxlen = len;
+      }
+    } else {
+      for (var key in hashTab) {
+        if (hashTab[key] < hashTab[s[index]]) {
+          delete hashTab[key];
+          len--;
+        }
+      }
+      //var keys = Object.keys(hashTab);
+      //for (var keyIndex = 0; keyIndex < keys.length; keyIndex++) {
+      //  if (hashTab[keys[keyIndex]] < hashTab[s[index]]) {
+      //    delete hashTab[keys[keyIndex]];
+      //  }
+      //}
+      //len = Object.keys(hashTab).length;
+      hashTab[s[index]] = index;
+    }
+  }
+  return maxlen;
+};
 
 module.exports = {
   lengthOfLongestSubstring: lengthOfLongestSubstring
