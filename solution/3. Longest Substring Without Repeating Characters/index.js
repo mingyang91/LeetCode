@@ -48,46 +48,25 @@ var lengthOfLongestSubstring1 = function(s) {
  */
 var lengthOfLongestSubstring = function(s) {
   'use strict';
-  var substr, subStringList = [];
-  var longLength = 0;
-  var offsetList = [];
-
-  for (var offset = 0; offset < s.length / 2; offset++) {
-    offsetList.push(offset);
-  }
-  for (var length = 1; length <= s.length / 2; length++) {
-    offsetList = offsetList.filter(function (offset) {
-      substr = s.substr(offset, length);
-      if (s.indexOf(substr) !== s.lastIndexOf(substr)) {
-        var repeat = subStringList.some(function (sub) {
-          if (sub === substr) {
-            return true;
-          }
-
-          for (var substrIndex = 0; substrIndex < substr.length; substrIndex++) {
-            if (sub[substrIndex % sub.length] !== substr[substrIndex]) {
-              return false;
-            }
-          }
-          return true;
-        });
-        if (!repeat) {
-          subStringList.push(substr);
-        }
-        return !repeat;
-      } else {
-       return false;
+  var hashTab = {};
+  var len = 0;
+  var maxlen = 0;
+  for (var index = 0; index < s.length; index++) {
+    if (typeof hashTab[s[index]] === 'undefined') {
+      hashTab[s[index]] = index;
+      if (++len > maxlen) {
+        maxlen = len;
       }
-    });
+    } else {
 
+      maxlen = Math.max(maxlen, len);
+      index = index - len + 1;
+      hashTab = {};
+      hashTab[s[index]] = index;
+      len = 1;
+    }
   }
-
-
-  if (subStringList.length > 0)
-  longLength = subStringList.reduce(function (before, now) {
-    return now.length > before ? now.length : before;
-  }, 0);
-  return longLength;
+  return maxlen;
 };
 
 

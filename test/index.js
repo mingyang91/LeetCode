@@ -69,6 +69,13 @@ describe('3. Longest Substring Without Repeating Characters', function () {
   var lengthOfLongestSubstring = require('../solution/3. Longest Substring Without Repeating Characters').lengthOfLongestSubstring;
   it('example', function (done) {
     var result = 0;
+
+    result = lengthOfLongestSubstring('aab');
+    result.should.be.equal(2);
+
+    result = lengthOfLongestSubstring('dvdf');
+    result.should.be.equal(3);
+
     result = lengthOfLongestSubstring('abcabcbb');
     result.should.be.equal(3);
 
