@@ -1,5 +1,5 @@
 /**
- * Ê±¼ä¸´ÔÓ¶È O(n?)
+ * æ—¶é—´å¤æ‚åº¦ O(n?)
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
@@ -7,13 +7,13 @@
 var twoSum1 = function (nums, target) {
 
   //
-  // ´´½¨{ number: n, index: i }µÄÊı×é
+  // åˆ›å»º{ number: n, index: i }çš„æ•°ç»„
   var list = nums
     .map(function (number, index) {
       return {number: number, index: index};
     })
     //
-    // É¸Ñ¡±£ÁôĞ¡ÓÚÄ¿±êÊıÖµµÄËùÓĞÊı×Ö
+    // ç­›é€‰ä¿ç•™å°äºç›®æ ‡æ•°å€¼çš„æ‰€æœ‰æ•°å­—
     .filter(function (item) {
       return item.number < target;
     });
@@ -29,7 +29,7 @@ var twoSum1 = function (nums, target) {
 };
 
 /**
- * Ê±¼ä¸´ÔÓ¶È O(n)
+ * æ—¶é—´å¤æ‚åº¦ O(n)
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
@@ -38,12 +38,12 @@ var twoSum2 = function (nums, target) {
   var track = Date.now();
   var list = nums
     //
-    // ´´½¨{ number: n, index: i }µÄÊı×é
+    // åˆ›å»º{ number: n, index: i }çš„æ•°ç»„
     .map(function (number, index) {
       return {number: number, index: index};
     })
     //
-    // ÅÅĞò
+    // æ’åº
     .sort(function (a, b) {
       return a.number - b.number;
     });
@@ -51,9 +51,9 @@ var twoSum2 = function (nums, target) {
   //console.log(list);
   track = Date.now();
   //
-  // ½¨Á¢ ×ó¡¢ÓÒ Á½¸öÓÎ±ê£¬ÏòÖĞ¼ä¿¿Â£
-  // µ±Ç°Á½¸öÊı×ÖÏà¼Ó´óÓÚÄ¿±êÊı×ÖÊ±£¬ÓÒÓÎ±êÏò×óÒÆ¶¯Ò»Î»¡£
-  // Ğ¡ÓÚÊ±£¬×óÓÎ±êÏòÓÒÒÆ¶¯Ò»Î»¡£
+  // å»ºç«‹ å·¦ã€å³ ä¸¤ä¸ªæ¸¸æ ‡ï¼Œå‘ä¸­é—´é æ‹¢
+  // å½“å‰ä¸¤ä¸ªæ•°å­—ç›¸åŠ å¤§äºç›®æ ‡æ•°å­—æ—¶ï¼Œå³æ¸¸æ ‡å‘å·¦ç§»åŠ¨ä¸€ä½ã€‚
+  // å°äºæ—¶ï¼Œå·¦æ¸¸æ ‡å‘å³ç§»åŠ¨ä¸€ä½ã€‚
   for (var leftCursor = 0, rightCursor = list.length - 1; ; ) {
     var current = list[leftCursor].number + list[rightCursor].number;
     if (current === target) {
@@ -95,10 +95,10 @@ var quickSort = function(arr, originalIndex) {
 };
 
 /**
- * ×î´óµÄ²âÊÔÓÃÀı,±¾µØÖ´ĞĞºÄÊ±10ms×óÓÒ
- * Ç°¼¸¸ö·½·¨ÓĞÁ½¸öºÜºÄ·ÑÊ±¼äµÄÎÊÌâ
- * 1. ÖØ¸´´´½¨¶ÔÏó/Êı×é
- * 2. Ö´ĞĞÁËÅÅĞò
+ * æœ€å¤§çš„æµ‹è¯•ç”¨ä¾‹,æœ¬åœ°æ‰§è¡Œè€—æ—¶10mså·¦å³
+ * å‰å‡ ä¸ªæ–¹æ³•æœ‰ä¸¤ä¸ªå¾ˆè€—è´¹æ—¶é—´çš„é—®é¢˜
+ * 1. é‡å¤åˆ›å»ºå¯¹è±¡/æ•°ç»„
+ * 2. æ‰§è¡Œäº†æ’åº
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
@@ -130,7 +130,7 @@ var twoSum3 = function (nums, target) {
 };
 
 /**
- * ±¾µØÖ´ĞĞºÄÊ±,2ms
+ * æœ¬åœ°æ‰§è¡Œè€—æ—¶,2ms
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
