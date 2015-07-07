@@ -78,7 +78,7 @@ var lengthOfLongestSubstring2 = function(s) {
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring2 = function(s) {
   'use strict';
   var hashTab = {};
   var len = 0;
@@ -103,6 +103,38 @@ var lengthOfLongestSubstring = function(s) {
       len -= discardEnd - discardStart;
       hashTab[s[index]] = index;
     }
+  }
+  return maxlen;
+};
+
+/**
+ * 本地执行最大的测试用例5ms左右
+ * leetcode执行所有测试用例耗时300ms
+ * O(n)
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+  'use strict';
+  var hashTab = {};
+  var len = 0;
+  var maxlen = 0;
+  var subStart = 0;
+
+  for (var char = 0; char < 256; char++) {
+    hashTab[String.fromCharCode(char)] = -1;
+  }
+
+  for (var index = 0; index < s.length; index++) {
+    if (hashTab[s[index]] < subStart) {
+      if (++len > maxlen) {
+        maxlen = len;
+      }
+    } else {
+      subStart = hashTab[s[index]];
+      len -= subStart - hashTab[s[index - len]];
+    }
+    hashTab[s[index]] = index;
   }
   return maxlen;
 };
