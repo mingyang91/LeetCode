@@ -82,6 +82,9 @@ describe('3. Longest Substring Without Repeating Characters', function () {
     result = lengthOfLongestSubstring('abcabcbb');
     result.should.be.equal(3);
 
+    result = lengthOfLongestSubstring('tmmzuxt');
+    result.should.be.equal(5);
+
     result = lengthOfLongestSubstring('bbbbbbbbbb');
     result.should.be.equal(1);
 

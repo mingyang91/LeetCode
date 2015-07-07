@@ -83,26 +83,24 @@ var lengthOfLongestSubstring = function(s) {
   var hashTab = {};
   var len = 0;
   var maxlen = 0;
+
+  for (var char = 0; char < 255; char++) {
+    hashTab[String.fromCharCode(char)] = undefined;
+  }
+
   for (var index = 0; index < s.length; index++) {
-    if (typeof hashTab[s[index]] === 'undefined') {
+    if (hashTab[s[index]] === undefined) {
       hashTab[s[index]] = index;
       if (++len > maxlen) {
         maxlen = len;
       }
     } else {
-      for (var key in hashTab) {
-        if (hashTab[key] < hashTab[s[index]]) {
-          delete hashTab[key];
-          len--;
-        }
+      var discardStart = hashTab[s[index - len]];
+      var discardEnd = hashTab[s[index]];
+      for (var discardIndex = discardStart; discardIndex < discardEnd; discardIndex++) {
+        hashTab[s[discardIndex]] = undefined;
       }
-      //var keys = Object.keys(hashTab);
-      //for (var keyIndex = 0; keyIndex < keys.length; keyIndex++) {
-      //  if (hashTab[keys[keyIndex]] < hashTab[s[index]]) {
-      //    delete hashTab[keys[keyIndex]];
-      //  }
-      //}
-      //len = Object.keys(hashTab).length;
+      len -= discardEnd - discardStart;
       hashTab[s[index]] = index;
     }
   }
