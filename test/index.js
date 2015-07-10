@@ -100,3 +100,23 @@ describe('3. Longest Substring Without Repeating Characters', function () {
     done();
   });
 });
+
+describe('4. Median of Two Sorted Arrays', function () {
+  "use strict";
+
+  var findMedianSortedArrays = require('../solution/4. Median of Two Sorted Arrays').findMediaSortedArrays;
+  it('example', function (done) {
+    var arr1, arr2, result;
+    arr1 = [1, 2, 4, 8, 9, 10];
+    arr2 = [3, 5, 6, 7];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(5.5);
+
+    arr1 = [];
+    arr2 = [1];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(1);
+    done();
+  });
+});
+
