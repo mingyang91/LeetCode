@@ -105,6 +105,19 @@ describe('4. Median of Two Sorted Arrays', function () {
   "use strict";
 
   var findMedianSortedArrays = require('../solution/4. Median of Two Sorted Arrays').findMediaSortedArrays;
+  var getMedianForTwoInterval = require('../solution/4. Median of Two Sorted Arrays').getMedianForTwoInterval;
+  it('hasIntersection', function (done) {
+    getMedianForTwoInterval([1, 2], [3, 4]).should.be.equal(false);
+    getMedianForTwoInterval([20, 30], [2, 9]).should.be.equal(false);
+    getMedianForTwoInterval([10, 50], [20, 40]).should.be.equal(30);
+    getMedianForTwoInterval([1, 15], [10, 25]).should.be.equal(12.5);
+    getMedianForTwoInterval([1, 5], [3]).should.be.equal(3);
+    getMedianForTwoInterval([1, 5], [9]).should.be.equal(false);
+    getMedianForTwoInterval([3], [1, 5]).should.be.equal(3);
+    getMedianForTwoInterval([9], [1, 5]).should.be.equal(false);
+    done();
+  });
+
   it('example', function (done) {
     var arr1, arr2, result;
     arr1 = [1, 2, 4, 8, 9, 10];
