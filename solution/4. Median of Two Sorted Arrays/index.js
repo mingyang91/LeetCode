@@ -6,99 +6,51 @@
  */
 var findMedianSortedArrays = function(nums1, nums2) {
   "use strict";
-
-
-  var index1 = getHalfIndexes(nums1);
-  var index2 = getHalfIndexes(nums2);
-  var startingDirection = compareInterval([nums1[index1[0]], nums1[index1[1]]], [nums2[index2[0]], nums2[index2[1]]]);
-  if (startingDirection > 0) {
-    startingDirection = 1;
-  } else if (startingDirection < 0) {
-    startingDirection = -1;
-  } else {
-    return getMedianForTwoInterval([nums1[index1[0]], nums1[index1[1]]], [nums2[index2[0]], nums2[index2[1]]]);
+  if (nums1.length + nums2.length <= 4) {
+    var mergeInterval = nums1.concat(nums2).sort();
+    return (mergeInterval[Math.floor((mergeInterval.length - 1) / 2)] + mergeInterval[Math.ceil((mergeInterval.length - 1) / 2)]) / 2;
   }
 
-  for (; ; ) {
-    var nowDirection = compareInterval([nums1[index1[0]], nums1[index1[1]]], [nums2[index2[0]], nums2[index2[1]]]);
-    if (nowDirection > 0) {
-      nowDirection = 1;
-    } else if (nowDirection < 0) {
-      nowDirection = -1;
-    } else {
-      nowDirection = 0;
-    }
-    if (nowDirection === startingDirection) {
-      //越界
+  var halfIndex1 = getHalfIndex(nums1);
+  var halfIndex2 = getHalfIndex(nums2);
 
-      if (isOutOfIndex(index1[0] - startingDirection, nums1) ||
-          isOutOfIndex(index1[1] - startingDirection, nums1) ||
-          isOutOfIndex(index2[0] + startingDirection, nums2) ||
-          isOutOfIndex(index2[1] + startingDirection, nums2)) {
-        return getMedianForTwoInterval([nums1[index1[0]], nums1[index1[1]]], [nums2[index2[0]], nums2[index2[1]]]);
-      }
-
-      index1[0] -= startingDirection;
-      index1[1] -= startingDirection;
-      index2[0] += startingDirection;
-      index2[1] += startingDirection;
-    } else if (nowDirection === 0) {
-      return getMedianForTwoInterval([nums1[index1[0]], nums1[index1[1]]], [nums2[index2[0]], nums2[index2[1]]]);
+  var median1 = (nums1[Math.floor(halfIndex1)] + nums1[Math.floor(halfIndex1)]) / 2, median2 = (nums2[Math.floor(halfIndex2)] + nums2[Math.floor(halfIndex2)]) / 2;
+  if (Number.isNaN(halfIndex1)) {
+    return median2;
+  } else if (Number.isNaN(halfIndex2)) {
+    return median1;
+  } else {
+    if (median1 > median2) {
+      return findMedianSortedArrays(nums1.slice(0, halfIndex1 + 1), nums2.slice(halfIndex2 - 1, nums2.length));
+    } else if (median1 < median2) {
+      return findMedianSortedArrays(nums1.slice(halfIndex1 + 1, nums1.length), nums2.slice(0, Math.ceil(halfIndex2 + 1)));
     } else {
-      index1[0] += startingDirection;
-      index1[1] += startingDirection;
-      index2[0] -= startingDirection;
-      index2[1] -= startingDirection;
-      return getMedianForTwoInterval([nums1[index1[0]], nums1[index1[1]]], [nums2[index2[0]], nums2[index2[1]]]);
+      return median1;
     }
   }
+
 };
 
-var isOutOfIndex = function (index, arr) {
-  return index < 0 || index >= arr.length;
-};
-
-var getHalfIndexes = function (arr) {
-  if (arr.length === 0) {
-
-
-    return [NaN, NaN];
-  } else {
-
-
-    var halfIndex = (arr.length - 1) / 2;
-    return [Math.floor(halfIndex), Math.ceil(halfIndex)];
-  }
+var getHalfIndex = function (arr) {
+  "use strict";
+  return arr.length === 0 ? NaN : (arr.length - 1) / 2;
 };
 
 var getMedianForTwoInterval = function (arr1, arr2) {
   "use strict";
-  //if (arr1.length === 1) {
-  //  arr1[1] = arr1[0];
-  //}
-  //
-  //if (arr2.length === 1) {
-  //  arr2[1] = arr2[0];
-  //}
-
-  //if (arr1[0] > arr2[arr2.length - 1] || arr1[arr1.length - 1] < arr2[0]) {
-  //if (compareInterval(arr1, arr2)) {
-  //  return false;
-  //} else {
-    //无交集
     var sorted = arr1.concat(arr2).sort().filter(function (e) { return e !== undefined; });
     if (sorted.length === 4) {
       return (sorted[1] + sorted[2]) / 2;
     } else {
       return (sorted[0] + sorted[1]) / 2;
     }
-  //}
 };
 
 var compareInterval = function (arr1, arr2) {
-  var greate = arr1[0] - arr2[arr2.length - 1];
+  "use strict";
+  var greater = arr1[0] - arr2[arr2.length - 1];
   var less = arr1[arr1.length - 1] - arr2[0];
-  if (greate > 0) {
+  if (greater > 0) {
     return arr1[0] - arr2[arr2.length - 1];
   } else if (less < 0) {
     return arr1[arr1.length - 1] - arr2[0];
@@ -106,8 +58,6 @@ var compareInterval = function (arr1, arr2) {
     return 0;
   }
 };
-
-
 
 module.exports = {
   findMediaSortedArrays: findMedianSortedArrays,
