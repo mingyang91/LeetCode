@@ -6,34 +6,40 @@
  */
 var findMedianSortedArrays = function(nums1, nums2) {
   "use strict";
-  if (nums1.length + nums2.length <= 4) {
-    var mergeInterval = nums1.concat(nums2).sort();
-    return (mergeInterval[Math.floor((mergeInterval.length - 1) / 2)] + mergeInterval[Math.ceil((mergeInterval.length - 1) / 2)]) / 2;
+
+  if (nums1.length > nums2.length) {
+    return findMedianSortedArrays(nums2, nums1);
   }
 
-  var halfIndex1 = getHalfIndex(nums1);
-  var halfIndex2 = getHalfIndex(nums2);
 
-  var median1 = (nums1[Math.floor(halfIndex1)] + nums1[Math.floor(halfIndex1)]) / 2, median2 = (nums2[Math.floor(halfIndex2)] + nums2[Math.floor(halfIndex2)]) / 2;
-  if (Number.isNaN(halfIndex1)) {
-    return median2;
-  } else if (Number.isNaN(halfIndex2)) {
-    return median1;
-  } else {
-    if (median1 > median2) {
-      return findMedianSortedArrays(nums1.slice(0, halfIndex1 + 1), nums2.slice(halfIndex2 - 1, nums2.length));
-    } else if (median1 < median2) {
-      return findMedianSortedArrays(nums1.slice(halfIndex1 + 1, nums1.length), nums2.slice(0, Math.ceil(halfIndex2 + 1)));
-    } else {
-      return median1;
-    }
+  var nums2Index = getHalfIndex(nums2);
+  var nums2Median = (nums2[Math.floor(nums2Index)] + nums2[Math.ceil(nums2Index)]) / 2;
+  if (nums1.length === 0) {
+    return nums2Median;
   }
+  var nums1Index = getHalfIndex(nums1);
+  var nums1Median = (nums1[Math.floor(nums1Index)] + nums1[Math.ceil(nums1Index)]) / 2;
 
+  var compare = compareInterval(
+      [nums1[Math.floor(nums1Index)], nums1[Math.ceil(nums1Index)]],
+      [nums2[Math.floor(nums2Index)], nums2[Math.ceil(nums2Index)]]);
+
+  console.log(compare);
+
+  if (compare === 0) {
+    console.log('找到了');
+    return 0;
+  } else if (compare > 0) {
+    return findMedianSortedArrays(nums1.slice(0, nums1Index + 1), nums2.slice(nums1Index + 1, nums2.length));
+
+  } else if (compare < 0) {
+    return findMedianSortedArrays(nums1.slice(nums1Index, nums1.length), nums2.slice(0, nums2.length - nums1Index));
+  }
 };
 
 var getHalfIndex = function (arr) {
   "use strict";
-  return arr.length === 0 ? NaN : (arr.length - 1) / 2;
+  return arr.length === 0 ? NaN : (arr.length + 1) / 2 - 1;
 };
 
 var getMedianForTwoInterval = function (arr1, arr2) {
@@ -45,6 +51,15 @@ var getMedianForTwoInterval = function (arr1, arr2) {
       return (sorted[0] + sorted[1]) / 2;
     }
 };
+
+function getMedianInterval (arr) {
+  "use strict";
+  var halfIndex = getHalfIndex(arr);
+  return {
+    left: arr[Math.ceil(halfIndex)],
+    right: arr[Math.floor(halfIndex)]
+  };
+}
 
 var compareInterval = function (arr1, arr2) {
   "use strict";
