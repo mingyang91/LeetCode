@@ -32,7 +32,12 @@ var findMedianSortedArrays = function(nums1, nums2) {
     //} else if (num1 >= nums2ceil) {
     //
     //}
-    nums2 = nums2.concat(nums1);
+
+    //
+    // 这里偷懒了
+    // 最佳做法应该是只判断位置，相应的移动中位数索引
+    // 次之也应该用二分法寻找插入位置
+    nums2.push(nums1[0]);
     nums2.sort(function (a, b) { return a - b; });
     nums2Index += 0.5;
     nums2Median = (nums2[Math.floor(nums2Index)] + nums2[Math.ceil(nums2Index)]) / 2;
