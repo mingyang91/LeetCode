@@ -171,6 +171,37 @@ describe('4. Median of Two Sorted Arrays', function () {
     arr2 = [1, 3, 4];
     result = findMedianSortedArrays(arr1, arr2);
     result.should.be.equal(2.5);
+
+    arr1 = [1, 2];
+    arr2 = [3, 4, 5];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(3);
+
+    arr1 = [1, 2, 3];
+    arr2 = [4, 5];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(3);
+
+    arr1 = [1, 3];
+    arr2 = [2, 4, 5];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(3);
+
+
+    arr1 = [1, 2, 4];
+    arr2 = [3, 5, 6];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(3.5);
+
+    arr1 = [1, 4, 5];
+    arr2 = [2, 3, 6];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(3.5);
+
+    arr1 = [1];
+    arr2 = [2,3,4,5,6,7,8,9,10];
+    result = findMedianSortedArrays(arr1, arr2);
+    result.should.be.equal(5.5);
     done();
   });
 });

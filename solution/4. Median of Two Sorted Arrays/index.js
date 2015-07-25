@@ -32,7 +32,11 @@ var findMedianSortedArrays = function(nums1, nums2) {
     //} else if (num1 >= nums2ceil) {
     //
     //}
-    nums2.push(nums1)
+    nums2 = nums2.concat(nums1);
+    nums2.sort(function (a, b) { return a - b; });
+    nums2Index += 0.5;
+    nums2Median = (nums2[Math.floor(nums2Index)] + nums2[Math.ceil(nums2Index)]) / 2;
+    return nums2Median;
   }
   //
   // 取得nums1的中间索引
@@ -59,13 +63,13 @@ var findMedianSortedArrays = function(nums1, nums2) {
       //
       // 分为两种情况讨论
       // 如果nums1最小数比nums2最大数还大
-      medianIndex = nums2Index - nums1Index;
+      medianIndex = nums2Index + nums1.length / 2;
       medianValue = (nums2[Math.floor(medianIndex)] + nums2[Math.ceil(medianIndex)]) / 2;
       return medianValue;
     } else if (nums2[0] > nums1[nums1.length - 1]) {
       //
       // 反之
-      medianIndex = nums2Index + nums1Index;
+      medianIndex = nums2Index - nums1.length / 2;
       medianValue = (nums2[Math.floor(medianIndex)] + nums2[Math.ceil(medianIndex)]) / 2;
       return medianValue;
     }
@@ -92,10 +96,10 @@ var findMedianSortedArrays = function(nums1, nums2) {
       return (small + greate) / 2;
     }
   } else if (compare > 0) {
-    return findMedianSortedArrays(nums1.slice(0, nums1Index + 1), nums2.slice(nums1Index + 1, nums2.length));
+    return findMedianSortedArrays(nums1.slice(0, nums1Index + 1), nums2.slice(Math.ceil(nums1Index), nums2.length));
 
   } else if (compare < 0) {
-    return findMedianSortedArrays(nums1.slice(nums1Index, nums1.length), nums2.slice(0, nums2.length - nums1Index));
+    return findMedianSortedArrays(nums1.slice(Math.ceil(nums1Index), nums1.length), nums2.slice(0, nums2.length - nums1Index));
   }
 };
 
