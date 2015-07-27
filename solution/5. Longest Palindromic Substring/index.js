@@ -6,9 +6,9 @@ var longestPalindrome = function(s) {
   "use strict";
 
   var max = 0;
-  for (var index = 1; index < s.length; index++) {
-    for (var length = 1; length < index && length < s.length - index; length++) {
-      if (s[index - length] !== s[index + length]) {
+  for (var middle = 1; middle < s.length; middle += 0.5) {
+    for (var length = 0.5; length < middle && length < s.length - middle; length += 0.5) {
+      if (s[middle - length] !== s[middle + length]) {
         break;
       } else {
         max = length * 2 > max ? length * 2 : max;
