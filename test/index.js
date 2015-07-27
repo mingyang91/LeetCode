@@ -213,7 +213,22 @@ describe('5. Longest Palindromic Substring', function () {
   var result;
 
   result = longestPalindromicSubstring('abcba');
-  result.should.be.equal(5);
+  result.should.be.equal('abcba');
+
+
+  result = longestPalindromicSubstring('abacaba');
+  result.should.be.equal('abacaba');
+
+
+  result = longestPalindromicSubstring('abcccba');
+  result.should.be.equal('abcccba');
+
+
+  result = longestPalindromicSubstring('abdcba');
+  result.should.be.equal('a');
+
+  result = longestPalindromicSubstring('aaaa');
+  result.should.be.equal('aaaa');
 
 });
 
