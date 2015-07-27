@@ -206,3 +206,14 @@ describe('4. Median of Two Sorted Arrays', function () {
   });
 });
 
+describe('5. Longest Palindromic Substring', function () {
+  "use strict";
+  var longestPalindromicSubstring = require('../solution/5. Longest Palindromic Substring').longestPalindromicSubstring;
+
+  var result;
+
+  result = longestPalindromicSubstring('abcba');
+  result.should.be.equal(5);
+
+});
+
