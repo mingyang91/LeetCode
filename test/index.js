@@ -210,28 +210,47 @@ describe('5. Longest Palindromic Substring', function () {
   "use strict";
   var longestPalindromicSubstring = require('../solution/5. Longest Palindromic Substring').longestPalindromicSubstring;
 
-  var result;
+  it('', function (done) {
+    var result;
 
-  result = longestPalindromicSubstring('abcba');
-  result.should.be.equal('abcba');
-
-
-  result = longestPalindromicSubstring('abacaba');
-  result.should.be.equal('abacaba');
+    result = longestPalindromicSubstring('abcba');
+    result.should.be.equal('abcba');
 
 
-  result = longestPalindromicSubstring('abcccba');
-  result.should.be.equal('abcccba');
+    result = longestPalindromicSubstring('abacaba');
+    result.should.be.equal('abacaba');
 
 
-  result = longestPalindromicSubstring('abdcba');
-  result.should.be.equal('a');
+    result = longestPalindromicSubstring('abcccba');
+    result.should.be.equal('abcccba');
 
-  result = longestPalindromicSubstring('aaaa');
-  result.should.be.equal('aaaa');
 
-  result = longestPalindromicSubstring('aaaaa');
-  result.should.be.equal('aaaaa');
+    result = longestPalindromicSubstring('abdcba');
+    result.should.be.equal('a');
+
+    result = longestPalindromicSubstring('aaaa');
+    result.should.be.equal('aaaa');
+
+    result = longestPalindromicSubstring('aaaaa');
+    result.should.be.equal('aaaaa');
+
+    done();
+  });
+
+});
+
+
+describe('6. ZigZag Conversion', function () {
+  "use strict";
+  var convert = require('../solution/6. ZigZag Conversion').convert;
+
+  it('normal', function (done) {
+
+    var result = convert('PAYPALISHIRING', 3);
+    result.should.be.equal('PAHNAPLSIIGYIR');
+
+    done();
+  });
 
 });
 
