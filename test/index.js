@@ -230,5 +230,8 @@ describe('5. Longest Palindromic Substring', function () {
   result = longestPalindromicSubstring('aaaa');
   result.should.be.equal('aaaa');
 
+  result = longestPalindromicSubstring('aaaaa');
+  result.should.be.equal('aaaaa');
+
 });
 
