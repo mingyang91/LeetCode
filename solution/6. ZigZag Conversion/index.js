@@ -13,8 +13,9 @@ var convert = function(s, numRows) {
   var lines = [];
   for (var index = 0; index < s.length; index++) {
     //TODO
-    var remainder = (index + 1) % (numRows * 2 - 1);
-    var lineIndex = remainder < numRows ? remainder : (numRows * 2 - remainder - 1);
+    var remainder = (index + 1) % ((numRows - 1) * 2);
+    var lineIndex = remainder <= numRows ? remainder : (numRows * 2 - remainder - 1);
+    lineIndex -= 1;
     if (lines[lineIndex] === undefined) {
       lines[lineIndex] = [];
     }
