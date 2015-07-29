@@ -239,7 +239,6 @@ describe('5. Longest Palindromic Substring', function () {
 
 });
 
-
 describe('6. ZigZag Conversion', function () {
   "use strict";
   var convert = require('../solution/6. ZigZag Conversion').convert;
@@ -264,5 +263,30 @@ describe('6. ZigZag Conversion', function () {
     done();
   });
 
+});
+
+describe('7. Reverse Integer', function () {
+  "use strict";
+  var reverse = require('../solution/7. Reverse Integer').reverse;
+
+  it('Normal', function (done) {
+    var result;
+    result = reverse(123456789);
+    result.should.be.equal(987654321);
+
+    result = reverse(1990474529917019);
+    result.should.be.equal(0);
+    done();
+  });
+});
+
+describe('8. String to Integer (atoi)', function () {
+  "use strict";
+  var myAtoi = require('../solution/8. String to Integer (atoi)').myAtoi;
+
+  it('normal', function (done) {
+    myAtoi('123456789').should.be.equal(123456789);
+    done();
+  });
 });
 
