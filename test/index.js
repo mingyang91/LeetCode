@@ -252,5 +252,17 @@ describe('6. ZigZag Conversion', function () {
     done();
   });
 
+  it('can deal with the border situation', function (done) {
+    var result = convert('a', 1);
+    result.should.be.equal('a');
+
+    result = convert('ab', 1);
+    result.should.be.equal('ab');
+
+    result = convert('ab', 2);
+    result.should.be.equal('ab');
+    done();
+  });
+
 });
 

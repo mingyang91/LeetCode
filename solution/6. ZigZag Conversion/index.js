@@ -11,21 +11,24 @@ var convert = function(s, numRows) {
   "use strict";
 
   var lines = [];
+
+  if (numRows <= 1) {
+    return s;
+  }
+
+  for (var rowIndex = 0; rowIndex < numRows; rowIndex++) {
+    lines[rowIndex] = "";
+  }
+
   for (var index = 0; index < s.length; index++) {
     //TODO
-    var remainder = (index + 1) % ((numRows - 1) * 2);
-    var lineIndex = remainder <= numRows ? remainder : (numRows * 2 - remainder - 1);
-    lineIndex -= 1;
-    if (lines[lineIndex] === undefined) {
-      lines[lineIndex] = [];
-    }
+    var remainder = index % (numRows - 1);
+    var lineIndex = ((((index / (numRows - 1)) >> 0) & 1) === 0) ? remainder : (numRows - 1 - remainder);
 
     lines[lineIndex] += s[index];
   }
 
-  return lines.reduce(function (x, y) {
-    return x + y;
-  });
+  return lines.join('');
 };
 
 module.exports = {
