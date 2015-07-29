@@ -286,6 +286,14 @@ describe('8. String to Integer (atoi)', function () {
 
   it('normal', function (done) {
     myAtoi('123456789').should.be.equal(123456789);
+    myAtoi('-123456789').should.be.equal(-123456789);
+    myAtoi('+123456789').should.be.equal(123456789);
+    done();
+  });
+
+  it('no normal', function (done) {
+    myAtoi('1234a56789').should.be.equal(1234);
+    myAtoi('-1234a56789').should.be.equal(-1234);
     done();
   });
 });
