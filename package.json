@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": " grunt",
-    "test": "grunt test"
+    "test": "grunt"
   },
   "author": "my",
   "license": "ISC",

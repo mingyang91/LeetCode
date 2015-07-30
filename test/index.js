@@ -210,7 +210,7 @@ describe('5. Longest Palindromic Substring', function () {
   "use strict";
   var longestPalindromicSubstring = require('../solution/5. Longest Palindromic Substring').longestPalindromicSubstring;
 
-  it('', function (done) {
+  it('normal', function (done) {
     var result;
 
     result = longestPalindromicSubstring('abcba');
