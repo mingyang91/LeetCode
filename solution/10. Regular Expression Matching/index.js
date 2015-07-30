@@ -39,7 +39,8 @@ var isMatch1 = function(s, p) {
  */
 var isMatch = function (s, p) {
   "use strict";
-  if (-1 === p.indexOf('*')) {
+  var asteriskIndex = p.indexOf('*');
+  if (-1 === asteriskIndex) {
     return matchEqual(s, p);
   }
 
