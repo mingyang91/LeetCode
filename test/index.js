@@ -298,3 +298,15 @@ describe('8. String to Integer (atoi)', function () {
   });
 });
 
+describe('9. Palindrome Number', function () {
+  "use strict";
+  var isPalindrome = require('../solution/9. Palindrome Number').isPalindrome;
+
+  it('normal', function (done) {
+    isPalindrome(12344321).should.be.true();
+    isPalindrome(123454321).should.be.true();
+    isPalindrome(-2147483648).should.be.false();
+    done();
+  });
+});
+
