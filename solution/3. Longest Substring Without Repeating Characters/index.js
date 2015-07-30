@@ -11,19 +11,7 @@ var lengthOfLongestSubstring1 = function(s) {
   for (var length = 1; length <= s.length / 2; length++) {
     for (var offset = 0; offset < s.length - length; offset++) {
       substr = s.substr(offset, length);
-      var isRepeatCheck = subStringList.some(function (item) {
-        if (0 !== substr.length % item.length || substr.length === 1 || substr === item) {
-          return false;
-        }
-
-        for(var index = 0; index < substr.length; index++) {
-          if (substr[index] !== item[index % item.length]){
-            return false;
-          }
-        }
-
-        return true;
-      });
+      var isRepeatCheck = subStringList.some(some(substr));
       if (!isRepeatCheck) {
         subStringList.push(s.substr(offset, length));
       }
@@ -42,6 +30,23 @@ var lengthOfLongestSubstring1 = function(s) {
   });
   return longLength;
 };
+
+function some (substr) {
+  "use strict";
+  return function (item) {
+    if (0 !== substr.length % item.length || substr.length === 1 || substr === item) {
+      return false;
+    }
+
+    for(var index = 0; index < substr.length; index++) {
+      if (substr[index] !== item[index % item.length]){
+        return false;
+      }
+    }
+
+    return true;
+  };
+}
 
 /**
  * 回头算法

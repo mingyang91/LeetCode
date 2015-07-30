@@ -1,7 +1,7 @@
 /**
  * Created by famer.me on 15-7-28.
  */
-
+/*jshint bitwise: false*/
 /**
  * @param {string} s
  * @param {number} numRows
@@ -21,7 +21,6 @@ var convert = function(s, numRows) {
   }
 
   for (var index = 0; index < s.length; index++) {
-    //TODO
     var remainder = index % (numRows - 1);
     var lineIndex = ((((index / (numRows - 1)) >> 0) & 1) === 0) ? remainder : (numRows - 1 - remainder);
 

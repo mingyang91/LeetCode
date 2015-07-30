@@ -90,7 +90,6 @@ var findMedianSortedArrays = function(nums1, nums2) {
       [nums2Small, nums2Greate]);
 
   if (compare === 0) {
-    console.log('找到了');
     if (Number.isInteger(nums1Index)) {
       return nums1[nums1Index];
     } else if (Number.isInteger(nums2Index)) {
