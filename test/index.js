@@ -310,3 +310,32 @@ describe('9. Palindrome Number', function () {
   });
 });
 
+describe('10. Regular Expression Matching', function () {
+  "use strict";
+
+  var s10 = require('../solution/10. Regular Expression Matching');
+  var isMatch = s10.isMatch;
+  var matchEqual = s10.matchEqual;
+  describe('matchEqual', function () {
+    it('normal', function (done) {
+      matchEqual('1234567890', '1.3.5.7.9.');
+      matchEqual('123', '...');
+      done();
+    });
+  });
+
+
+  it('normal', function (done) {
+    isMatch('ac', 'aabbc*c');
+    isMatch('ac', 'aa*bb*cc');
+    //isMatch("aa","a").should.be.false();
+    //isMatch("aa","aa").should.be.true();
+    //isMatch("aaa","aa").should.be.false();
+    //isMatch("aa", "a*").should.be.true();
+    //isMatch("aa", ".*").should.be.true();
+    //isMatch("ab", ".*").should.be.true();
+    //isMatch("aab", "c*a*b").should.be.true();
+    done();
+  });
+});
+
