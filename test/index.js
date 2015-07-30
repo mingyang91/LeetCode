@@ -326,8 +326,13 @@ describe('10. Regular Expression Matching', function () {
 
 
   it('normal', function (done) {
-    isMatch('ac', 'aabbc*c');
-    isMatch('ac', 'aa*bb*cc');
+    //isMatch('ac', 'aabbc*c');
+    //isMatch('ac', 'aa*bb*cc');
+
+    isMatch('abc', 'abc').should.be.true();
+    isMatch('abc', 'ab').should.be.false();
+    isMatch('abrc', 'ab.c').should.be.true();
+    isMatch('abc', 'abd').should.be.false();
     //isMatch("aa","a").should.be.false();
     //isMatch("aa","aa").should.be.true();
     //isMatch("aaa","aa").should.be.false();
