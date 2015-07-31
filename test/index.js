@@ -317,6 +317,7 @@ describe('10. Regular Expression Matching', function () {
   var isMatch = s10.isMatch;
   var matchEqual = s10.matchEqual;
   var matchIndexOf = s10.matchIndexOf;
+  var asteriskMatch = s10.asteriskMatch;
   describe('matchEqual', function () {
     it('normal', function (done) {
       matchEqual('1234567890', '1234567890').should.be.true();
@@ -340,6 +341,7 @@ describe('10. Regular Expression Matching', function () {
   describe('matchIndexOf', function () {
     it('normal', function (done) {
       matchIndexOf('0123456789', '456').should.be.equal(4);
+      matchIndexOf('012345', '456').should.be.equal(-1);
       done();
     });
 
@@ -354,6 +356,34 @@ describe('10. Regular Expression Matching', function () {
 
       done();
     });
+
+    it('Supports Empty', function (done) {
+      matchIndexOf('0123456789', '').should.be.equal(0);
+      matchIndexOf('0123456789', '', 1).should.be.equal(1);
+      matchIndexOf('0123456789', '', 3).should.be.equal(3);
+      matchIndexOf('0123456789', '', 5).should.be.equal(5);
+
+      done();
+    });
+
+    it('out of index', function (done) {
+      matchIndexOf('012345', '', 5).should.be.equal(5);
+      matchIndexOf('012345', '', 10).should.be.equal(6);
+      done();
+    });
+  });
+
+  describe('asteriskMatch', function () {
+    it('normal', function (done) {
+      asteriskMatch('asdf', 'a').should.be.false();
+      asteriskMatch('ssssssssss', 's').should.be.true();
+      done();
+    });
+
+    it('Supports dot', function (done) {
+      asteriskMatch('asdf', '.').should.be.true();
+      done();
+    });
   });
 
 
@@ -364,14 +394,30 @@ describe('10. Regular Expression Matching', function () {
     isMatch('abc', 'abc').should.be.true();
     isMatch('abc', 'ab').should.be.false();
     isMatch('abrc', 'ab.c').should.be.true();
+    isMatch('abrc', 'ab.*c').should.be.true();
     isMatch('abc', 'abd').should.be.false();
-    //isMatch("aa","a").should.be.false();
-    //isMatch("aa","aa").should.be.true();
-    //isMatch("aaa","aa").should.be.false();
-    //isMatch("aa", "a*").should.be.true();
-    //isMatch("aa", ".*").should.be.true();
-    //isMatch("ab", ".*").should.be.true();
-    //isMatch("aab", "c*a*b").should.be.true();
+    isMatch("aa","a").should.be.false();
+    isMatch("aa","aa").should.be.true();
+    isMatch("aaa","aa").should.be.false();
+    isMatch("aa", "a*").should.be.true();
+    isMatch("aa", ".*").should.be.true();
+    isMatch("ab", ".*").should.be.true();
+    isMatch("aab", "c*a*b").should.be.true();
+    isMatch("aab", "ca*b").should.be.false();
+
+    isMatch("abcd", "abcde*f*g*").should.be.true();
+
+    isMatch("aaba", "ab*a*c*a").should.be.false();
+
+    isMatch('aaa', 'ab*ac*a').should.be.true();
+
+    isMatch('a', 'ab*').should.be.true();
+
+    isMatch('a', '.*..a*').should.be.false();
+
+    isMatch("acaabbaccbbacaabbbb", "a*.*b*.*a*aa*a*").should.be.false();
+
+    isMatch("bccbbabcaccacbcacaa", ".*b.*c*.*.*.c*a*.c").should.be.false();
     done();
   });
 });
