@@ -316,10 +316,42 @@ describe('10. Regular Expression Matching', function () {
   var s10 = require('../solution/10. Regular Expression Matching');
   var isMatch = s10.isMatch;
   var matchEqual = s10.matchEqual;
+  var matchIndexOf = s10.matchIndexOf;
   describe('matchEqual', function () {
     it('normal', function (done) {
-      matchEqual('1234567890', '1.3.5.7.9.');
-      matchEqual('123', '...');
+      matchEqual('1234567890', '1234567890').should.be.true();
+      matchEqual('123', '123').should.be.true();
+
+      matchEqual('1234567890', '12345c7890').should.be.false();
+      matchEqual('123', '133').should.be.false();
+      done();
+    });
+
+    it('Supports wildcards', function (done) {
+      matchEqual('1234567890', '1.3.5.7.9.').should.be.true();
+      matchEqual('123', '...').should.be.true();
+
+      matchEqual('1234567890', '1.3.5.d.9.').should.be.false();
+      matchEqual('123', '.c.').should.be.false();
+      done();
+    });
+  });
+
+  describe('matchIndexOf', function () {
+    it('normal', function (done) {
+      matchIndexOf('0123456789', '456').should.be.equal(4);
+      done();
+    });
+
+    it('startWith', function (done) {
+      matchIndexOf('0123456789', '456', 6).should.be.equal(-1);
+      matchIndexOf('0123456789', '456', 4).should.be.equal(4);
+      done();
+    });
+
+    it('Supports wildcards', function (done) {
+      matchIndexOf('0123456789', '4.6').should.be.equal(4);
+
       done();
     });
   });
