@@ -449,5 +449,5 @@ describe('11. Container With Most Water', function () {
     console.timeEnd('longer');
     result.should.be.equal(56250000);
     done();
-  })
+  });
 });

@@ -84,8 +84,12 @@ var maxArea = function (height) {
     max = currentArea > max ? currentArea : max;
 
     do {
-      isRightGreaterThenLeft ? left++ : right--;
-    } while (right > left && (isRightGreaterThenLeft ? height[left] < currentLeft : height[right] < currentRight))
+      if (isRightGreaterThenLeft) {
+        left++;
+      } else {
+        right++;
+      }
+    } while (right > left && (isRightGreaterThenLeft ? height[left] < currentLeft : height[right] < currentRight));
   }
 
   return max;
